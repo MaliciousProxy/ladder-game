@@ -6,10 +6,10 @@ import ladder.exception.InvalidLinesException;
 import ladder.exception.InvalidPositionException;
 import ladder.exception.MinimumLineException;
 
-public class Lines {
-    private List<Boolean> lines;
+public final class Lines {
+    private final List<Boolean> lines;
 
-    public Lines(List<Boolean> lines) {
+    public Lines(final List<Boolean> lines) {
         validateLines(lines);
         this.lines = lines;
     }
