@@ -1,5 +1,6 @@
 package ladder;
 
+import java.util.Collections;
 import java.util.List;
 
 import ladder.exception.LadderHeightException;
@@ -26,5 +27,9 @@ public final class Ladder {
         }
 
         return currentPosition;
+    }
+
+    public List<Lines> getLines() {
+        return Collections.unmodifiableList(ladder);
     }
 }

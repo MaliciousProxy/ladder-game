@@ -1,5 +1,6 @@
 package ladder;
 
+import java.util.Collections;
 import java.util.List;
 
 import ladder.exception.InvalidLinesException;
@@ -67,5 +68,9 @@ public final class Lines {
         }
 
         return lines.get(currentPosition);
+    }
+
+    public List<Boolean> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }

@@ -39,4 +39,8 @@ public class LadderGame {
 
         return name;
     }
+
+    public Map<String, String> finish() {
+        return Collections.unmodifiableMap(results);
+    }
 }
