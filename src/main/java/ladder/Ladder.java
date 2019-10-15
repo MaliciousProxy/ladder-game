@@ -6,6 +6,8 @@ import java.util.List;
 import ladder.exception.LadderHeightException;
 
 public final class Ladder {
+    private static final int MINIMUM_LADDER_HEIGHT = 1;
+
     private final List<Lines> ladder;
 
     public Ladder(final List<Lines> ladder) {
@@ -14,14 +16,13 @@ public final class Ladder {
     }
 
     private void validateLadderHeight(List<Lines> ladder) {
-        if (ladder.size() <= 0) {
+        if (ladder.size() < MINIMUM_LADDER_HEIGHT) {
             throw new LadderHeightException();
         }
     }
 
     public int climb(int position) {
         int currentPosition = position;
-
         for (Lines lines : ladder) {
             currentPosition = lines.move(currentPosition);
         }

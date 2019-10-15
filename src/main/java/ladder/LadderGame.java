@@ -6,7 +6,7 @@ import ladder.exception.NotFoundPersonNameException;
 import ladder.exception.NotMatchedPeopleAndRewardsNumberException;
 
 public class LadderGame {
-    private Map<String, String> results;
+    private Map<String, String> results = new HashMap<>();
 
     public LadderGame(Ladder ladder, List<String> people, List<String> rewards) {
         validate(people, rewards);
@@ -24,8 +24,6 @@ public class LadderGame {
     }
 
     private void initialize(Ladder ladder, List<String> people, List<String> rewards) {
-        results = new HashMap<>();
-
         for (int i = 0; i < people.size(); i++) {
             results.put(people.get(i), rewards.get(ladder.climb(i)));
         }

@@ -8,6 +8,7 @@ import ladder.exception.InvalidPositionException;
 import ladder.exception.MinimumLineException;
 
 public final class Lines {
+    public static final int MINIMUM_LINE_COUNT = 1;
     private final List<Boolean> lines;
 
     public Lines(final List<Boolean> lines) {
@@ -21,16 +22,22 @@ public final class Lines {
     }
 
     private void validateLinesSize(List<Boolean> lines) {
-        if (lines.size() <= 0) {
+        if (lines.size() < MINIMUM_LINE_COUNT) {
             throw new MinimumLineException();
         }
     }
 
     private void validateLinesSequence(List<Boolean> lines) {
         for (int i = 1; i < lines.size(); i++) {
-            if (lines.get(i - 1) && lines.get(i)) {
-                throw new InvalidLinesException();
-            }
+            final boolean previousLine = lines.get(i - 1);
+            final boolean currentLine = lines.get(i);
+            validateLine(previousLine, currentLine);
+        }
+    }
+
+    private void validateLine(boolean previousLine, boolean currentLine) {
+        if (previousLine && currentLine) {
+            throw new InvalidLinesException();
         }
     }
 
@@ -55,19 +62,27 @@ public final class Lines {
     }
 
     private boolean canMoveLeftSide(int currentPosition) {
-        if (currentPosition <= 0) {
+        if (isFirstPosition(currentPosition)) {
             return false;
         }
 
         return lines.get(currentPosition - 1);
     }
 
+    private boolean isFirstPosition(int currentPosition) {
+        return currentPosition <= 0;
+    }
+
     private boolean canMoveRightSide(int currentPosition) {
-        if (currentPosition >= lines.size()) {
+        if (isLastPosition(currentPosition)) {
             return false;
         }
 
         return lines.get(currentPosition);
+    }
+
+    private boolean isLastPosition(int currentPosition) {
+        return currentPosition >= lines.size();
     }
 
     public List<Boolean> getLines() {
