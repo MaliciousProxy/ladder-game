@@ -54,7 +54,7 @@ public final class Lines {
     }
 
     private boolean canMoveLeftSide(int currentPosition) {
-        if (currentPosition == 0) {
+        if (currentPosition <= 0) {
             return false;
         }
 
@@ -62,7 +62,7 @@ public final class Lines {
     }
 
     private boolean canMoveRightSide(int currentPosition) {
-        if (currentPosition == lines.size()) {
+        if (currentPosition >= lines.size()) {
             return false;
         }
 
