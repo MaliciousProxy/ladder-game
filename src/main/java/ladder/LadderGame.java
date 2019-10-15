@@ -1,19 +1,26 @@
 package ladder;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import ladder.exception.NotFoundPersonNameException;
+import ladder.exception.NotMatchedPeopleAndRewardsNumberException;
 
 public class LadderGame {
-    private Ladder ladder;
     private Map<String, String> results;
 
     public LadderGame(Ladder ladder, List<String> people, List<String> rewards) {
-        this.ladder = ladder;
+        validate(people, rewards);
         initialize(ladder, people, rewards);
+    }
+
+    private void validate(List<String> people, List<String> rewards) {
+        if (isNotSameNumberPeopleAndRewards(people, rewards)) {
+            throw new NotMatchedPeopleAndRewardsNumberException();
+        }
+    }
+
+    private boolean isNotSameNumberPeopleAndRewards(List<String> people, List<String> rewards) {
+        return people.size() != rewards.size();
     }
 
     private void initialize(Ladder ladder, List<String> people, List<String> rewards) {
@@ -26,7 +33,6 @@ public class LadderGame {
 
     public String run(String personName) {
         String name = results.get(personName);
-
         if (Objects.isNull(name)) {
             throw new NotFoundPersonNameException();
         }

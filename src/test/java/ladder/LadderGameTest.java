@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import ladder.exception.NotFoundPersonNameException;
+import ladder.exception.NotMatchedPeopleAndRewardsNumberException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,5 +38,12 @@ class LadderGameTest {
     void 결과_확인_예외_발생_참가자의_이름이_없는_경우() {
         LadderGame ladderGame = new LadderGame(ladder, people, rewards);
         assertThrows(NotFoundPersonNameException.class, () -> ladderGame.run("starkim06"));
+    }
+
+    @Test
+    void 생성_예외_발생_참가자의_수와_보상의_수가_다른_경우() {
+        List<String> rewards = Arrays.asList("꽝", "1000");
+        assertThrows(NotMatchedPeopleAndRewardsNumberException.class,
+                () -> new LadderGame(ladder, people, rewards));
     }
 }
