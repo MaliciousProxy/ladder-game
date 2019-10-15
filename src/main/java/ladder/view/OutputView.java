@@ -7,21 +7,32 @@ import ladder.Ladder;
 import ladder.Lines;
 
 public class OutputView {
-    public static void printLadder(Ladder ladder, List<String> people, List<String> rewards) {
+    public static void printLadderGame(Ladder ladder, List<String> people, List<String> rewards) {
         System.out.println("사다리 결과");
+        printPeople(people);
+        printLadder(ladder);
+        printRewards(rewards);
+    }
+
+    private static void printPeople(List<String> people) {
         for (final String person : people) {
             System.out.print(person + "    ");
         }
         System.out.println();
-        final List<Lines> lines = ladder.getLines();
-        for (final Lines line : lines) {
-            printLine(line);
-        }
+    }
 
+    private static void printRewards(List<String> rewards) {
         for (final String reward : rewards) {
             System.out.print(reward + "    ");
         }
         System.out.println();
+    }
+
+    private static void printLadder(Ladder ladder) {
+        final List<Lines> lines = ladder.getLines();
+        for (final Lines line : lines) {
+            printLine(line);
+        }
     }
 
     private static void printLine(Lines line) {

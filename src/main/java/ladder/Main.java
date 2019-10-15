@@ -15,7 +15,7 @@ public class Main {
         Ladder ladder = LadderFactory.generateLadder(ladderHeight, people.size());
         LadderGame ladderGame = new LadderGame(ladder, people, rewards);
 
-        OutputView.printLadder(ladder, people, rewards);
+        OutputView.printLadderGame(ladder, people, rewards);
 
         String inputResultName = InputView.getResultName();
         while (!"all".equalsIgnoreCase(inputResultName)) {
