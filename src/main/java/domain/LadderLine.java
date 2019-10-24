@@ -6,18 +6,19 @@ import java.util.List;
 
 public class LadderLine {
     private static final List<Boolean> TARGET = Arrays.asList(true, true);
+    private static final int NO_CANDIDATE_MATCHED = -1;
 
     private List<Boolean> rows;
 
     public LadderLine(List<Boolean> rows) {
-        if (Collections.indexOfSubList(rows, TARGET) != -1) {
-            throw new IllegalArgumentException();
-        }
+        checkSuccessiveRow(rows);
         this.rows = rows;
     }
 
-    public int getSize() {
-        return rows.size();
+    private void checkSuccessiveRow(List<Boolean> rows) {
+        if (Collections.indexOfSubList(rows, TARGET) != NO_CANDIDATE_MATCHED) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public void move(Users users) {
@@ -32,5 +33,9 @@ public class LadderLine {
                 users.changePosition(i, i + 1);
             }
         }
+    }
+
+    public int getSize() {
+        return rows.size();
     }
 }

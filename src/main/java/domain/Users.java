@@ -20,10 +20,6 @@ public class Users {
                 .collect(Collectors.toList());
     }
 
-    public int countOfUsers() {
-        return users.size();
-    }
-
     public void changePosition(int now, int changedPosition) {
         User user1 = users.get(now);
         User user2 = users.get(changedPosition);
@@ -37,6 +33,10 @@ public class Users {
 
     public List<User> getUsers() {
         return Collections.unmodifiableList(users);
+    }
+
+    public int countOfUsers() {
+        return users.size();
     }
 
     @Override

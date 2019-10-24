@@ -5,6 +5,8 @@ import domain.exception.InvalidNameException;
 import java.util.Objects;
 
 public class User {
+    private static final int MAX_NAME_SIZE = 5;
+
     private String name;
 
     public User(String name) {
@@ -13,7 +15,7 @@ public class User {
     }
 
     private void checkNameLength(String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_NAME_SIZE) {
             throw new InvalidNameException();
         }
     }

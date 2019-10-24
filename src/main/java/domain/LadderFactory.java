@@ -5,10 +5,11 @@ import java.util.List;
 import java.util.Random;
 
 public class LadderFactory {
+    private static final int MIN_HEIGHT = 1;
+
     public static Ladder create(int countOfPlayer, int height) {
-        if(height <= 0) {
-            throw new IllegalArgumentException("허용되지 않는 높이");
-        }
+        checkHeight(height);
+
         List<LadderLine> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
@@ -16,6 +17,12 @@ public class LadderFactory {
         }
 
         return new Ladder(lines);
+    }
+
+    private static void checkHeight(int height) {
+        if(height < MIN_HEIGHT) {
+            throw new IllegalArgumentException("허용되지 않는 높이");
+        }
     }
 
     private static LadderLine createLadderLine(int countOfPlayer) {
